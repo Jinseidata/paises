@@ -41,22 +41,24 @@
 
     <h3>Traducciones</h3>
     <div class="row">
-        <div class="col">
+        <div class="col" 
+              >
             
             <span
-            *ngFor="let t of pais.translations | keyvalue"        
-            class="badge bg-primary me-2"   
-    >          
-            {{ t.value.official }}   
-    </span>
+                *ngFor="let item of pais.translations | keyvalue "
+                class="badge bg-primary m-2"
+            >  
+                {{ item.value.official }}        
+              
+            </span>
 
         </div>
     </div>
 
 
-    <!-- <pre class="mt-5">
+     <pre class="mt-5">
         {{ pais | json }}
-    </pre> -->
+    </pre> 
 
 
 </ng-template>

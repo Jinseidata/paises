@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Country } from '../interfaces/pais.interfaces';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +12,8 @@ export class PaisService {
 
 
   private apiUrl: string = 'https://restcountries.com/v3.1';
+
+  private apiUrlRegion: string = 'https://restcountries.com/v2/regionalbloc';
 
   constructor( private http: HttpClient ) { }
 
@@ -27,6 +31,12 @@ export class PaisService {
     return  this.http.get<Country[]>(url);
   }
 
+  public  buscarRegion( region: string): Observable<Country[]>{
+    
+    const url = `${this.apiUrlRegion}/${region}`;
+    
+    return  this.http.get<Country[]>(url);
+  }
 
 
   
