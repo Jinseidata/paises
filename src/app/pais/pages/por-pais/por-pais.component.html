@@ -1,24 +1,49 @@
-<h2> por país</h2>
-<hr>
+<div class="animate__animated animate__fadeIn animate__faster">
 
-<div class="row">
-    <div class="col">
-       <app-pais-input
-        (onEnter)="buscar( $event )"
-        (onDebounce)="sugerencias( $event)"
-        placeholder = "Buscar país ...."
-       ></app-pais-input>
+    <h2> por país</h2>
+    <hr>
 
+    <div class="row">
+        <div class="col">
+            <app-pais-input 
+            (onEnter)="buscar( $event )" 
+            (onDebounce)="sugerencias( $event)"
+             placeholder="Buscar país ...."></app-pais-input>
+
+        </div>
     </div>
 
+  
 
+       
+             <ul class="list-group">
+                <li 
+                *ngFor="let item of paisesSugeridos"
+                class="list-group-item acttion">
+                <a 
+                
+                class="nav-link"
+                [routerLink]="['/pais',(item.altSpellings[0] !== undefined) ? item.altSpellings[0] : item.alpha2Code]"> 
+                {{ item.name.official }}
+            </a>
+            </li>
+                
+            </ul>
+
+      
+
+
+
+
+
+
+    <hr *ngIf="paises.length > 0">
+    <br>
 
 </div>
 
-<hr *ngIf="paises.length > 0" >
-<br>
-<div *ngIf="errorBusqueda"
-     class="alert alert-danger m-2">
+
+<div *ngIf="errorBusqueda" class="alert alert-danger m-2">
 
     No se ha encontrado nada con el término: {{ termino }}
 
@@ -26,6 +51,6 @@
 
 <div *ngIf="paises.length > 0" class="row">
     <div class="col">
-       <app-pais-tabla [paises]="paises"></app-pais-tabla>
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
     </div>
 </div>
